@@ -1,61 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍰 Bolin - Marketplace de Confeitarias
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<!-- <img src="imagem.png" alt="Exemplo imagem"> -->
 
-## About Laravel
+> Este projeto é um **Marketplace para Confeitarias**, desenvolvido como parte de um desafio técnico para uma vaga de estágio. O sistema permite o cadastro, edição, exclusão e visualização de confeitarias e seus produtos, além da exibição das confeitarias em um mapa interativo com base em coordenadas geográficas.
+ 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ✅ Registro e gerenciamento de confeitarias
+- ✅ Cadastro de produtos vinculados a uma confeitaria
+- ✅ Upload de múltiplas imagens para os produtos
+- ✅ Visualização das confeitarias em um mapa interativo (Leaflet.js)
+- ✅ Resumo da confeitaria ao clicar no marcador no mapa
+- ✅ Validações nos formulários
+- ✅ Auto-preenchimento do endereço via CEP (API ViaCEP)
+- ✅ Exclusão em cascata (ao remover confeitaria, os produtos são deletados)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Tecnologias Utilizadas
 
-## Learning Laravel
+### 🖥️ Backend
+- [Laravel 12](https://laravel.com)
+- Inertia.js (como ponte entre frontend e backend)
+- PostgreSQL (Banco de Dados)
+<!-- - PHPUnit (Testes Automatizados) -->
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 💻 Frontend
+- [Vue.js 3](https://vuejs.org)
+- Leaflet.js (Mapa interativo)
+<!-- - Axios (Requisições HTTP, como para o ViaCEP) -->
+- Vite (Empacotamento)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ⚙️ Requisitos Técnicos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP >= 8.3
+- Composer >= 2.7
+- Node.js >= 18
+- PostgreSQL >= 12
+- NPM ou Yarn
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Passo a Passo para Rodar o Projeto
 
-### Premium Partners
+Para instalar o Bolin, siga estas etapas:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+1.**Clone o repositório:**
 
-## Contributing
+```
+git clone https://github.com/orafa81/Bolin---Desafio.git
+cd Bolin---Desafio
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2.**Instale as dependências do backend:**
 
-## Code of Conduct
+```
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.**Instale as dependências do frontend:**
 
-## Security Vulnerabilities
+```
+npm install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.**Configure o ambiente:**
 
-## License
+- Copie o arquivo .env.example para .env:
+```
+cp .env.example .env
+```
+- Atualize as variáveis do banco de dados PostgreSQL.
+- Gere a chave da aplicação:
+```
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5.**Configure o ambiente:**
+
+```
+php artisan migrate
+```
+
+6.**Inicie os servidores:**
+
+Backend:
+```
+php artisan serve
+```
+
+Frontend:
+```
+npm run dev
+```
