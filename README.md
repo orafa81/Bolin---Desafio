@@ -74,7 +74,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-5.**Configure o ambiente:**
+5.**Crie as tabelas no banco:**
 
 ```
 php artisan migrate
