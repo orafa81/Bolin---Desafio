@@ -1,0 +1,78 @@
+<script setup>
+import { ref } from "vue";
+import { Link, router } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
+
+const props = defineProps({
+  confectionery: Object,
+  isOpen: Boolean,
+});
+
+const emit = defineEmits(["toggle"]);
+
+const deletar = (id) => {
+  if (confirm("Tem certeza que deseja excluir este confectionery?")) {
+    router.delete(route("confectionery.destroy", id));
+  }
+};
+</script>
+
+<template>
+  <div class="relative">
+    <button @click="emit('toggle')"
+      id="apple-imac-27-dropdown-button"
+      data-dropdown-toggle="apple-imac-27-dropdown"
+      class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
+      type="button"
+    >
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        fill="currentColor"
+        viewbox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+        />
+      </svg>
+    </button>
+    <div
+      v-if="isOpen"
+      id="apple-imac-27-dropdown"
+      class="absolute z-40 w-44 right-0 bg-white rounded divide-y divide-gray-100 shadow"
+    >
+      <ul
+        class="py-1 text-sm text-gray-700"
+        aria-labelledby="apple-imac-27-dropdown-button"
+      >
+        <li>
+          <a href="#" class="block py-2 px-4 hover:bg-gray-100">Show</a>
+        </li>
+        <li>
+
+         <Link
+              :href="route('confectionery.edit', confectionery.id)"
+              class="block py-2 px-4 hover:bg-gray-100"
+            >
+              Editar
+            </Link>
+        </li>
+        <li>
+
+         <button
+              @click="deletar(confectionery.id)"
+              class="block py-2 px-4 hover:bg-gray-100"
+            >
+              Excluir
+            </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+
+
+<style>
+</style>
