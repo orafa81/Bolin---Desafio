@@ -10,12 +10,12 @@ class ImageProduct extends Model
     protected $table = 'images_products';
 
     protected $fillable = [
-        'product_id',
+        'products_id',
         'path',
     ];
 
     public function produto()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'products_id');
     }
 }

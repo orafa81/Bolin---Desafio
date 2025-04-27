@@ -9,6 +9,19 @@ use Inertia\Inertia;
 
 class ConfectioneryController extends Controller
 {
+    public function show($confectionery)
+    {
+        $data = Confectionery::findOrFail($confectionery);
+
+        $products = $data
+            ->produtos()
+            ->with('imagens')
+            ->paginate(8); // 
+
+        
+        
+        return Inertia("Confectionery/Confectionery", ["data" => $data, "data_product" => $products]) ;
+    }
     public function list(Request $request)
     {
         return Inertia("Confectionery/ListConfectionery", ["list" => Confectionery::all()]) ;

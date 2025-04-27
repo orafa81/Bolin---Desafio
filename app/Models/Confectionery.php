@@ -21,6 +21,6 @@ class Confectionery extends Model
 
     public function produtos()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'confectioneries_id');
     }
 }

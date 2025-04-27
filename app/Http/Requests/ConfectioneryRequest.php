@@ -30,8 +30,8 @@ class ConfectioneryRequest extends FormRequest
             'city' => 'required|string',
             'state' => 'required|string',
             'telephone' => 'required|regex:/^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ];
     }
 }

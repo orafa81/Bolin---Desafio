@@ -3,23 +3,6 @@ import { useForm } from "@inertiajs/vue3";
 import { computed, toRefs } from "vue";
 import axios from 'axios'
 
-// const form = useForm({
-//   name: null,
-//   cep: null,
-//   road: null,
-//   number: null,
-//   neighborhood: null,
-//   city: null,
-//   state: null,
-//   telephone: null,
-//   latitude: null,
-//   longitude: null,
-// });
-
-// function submit() {
-//   form.post(route("confectionery.store"));
-// }
-
 const props = defineProps({
   confectionery: {
     type: Object,
@@ -253,6 +236,7 @@ const submit = () => {
             >
             <input
               type="number"
+              step="0.000001"
               id="latitude"
               v-model="form.latitude"
               name="latitude"
@@ -272,6 +256,7 @@ const submit = () => {
             >
             <input
               type="number"
+              step="0.000001"
               id="longitude"
               v-model="form.longitude"
               name="longitude"

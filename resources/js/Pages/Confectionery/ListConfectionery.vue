@@ -92,12 +92,16 @@ const toggleDropdown = (id) => {
                 :key="confectionery.id"
                 class="border-b border-gray-200"
               >
-                <th
-                  scope="row"
-                  class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
-                >
-                  {{ confectionery.name }}
-                </th>
+              
+                <Link :href="route('confectionery.show', confectionery.id)">
+                  <th
+                    scope="row"
+                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    {{ confectionery.name }}
+                  </th>
+                </Link>
+
                 <td class="px-4 py-3">
                   {{ confectionery.road }}, {{ confectionery.neighborhood }},
                   {{ confectionery.number }}

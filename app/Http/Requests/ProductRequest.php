@@ -11,7 +11,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,9 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|min:3',
             'value' => 'required|numeric|min:0.01',
             'description' => 'required|string|min:10',
-            'images.*' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'cconfectioneries_id' => 'required|exists:confectioneries,id',
+            'confectioneries_id' => 'required|exists:confectioneries,id',
+            'images_products' => 'nullable|array',
+            'images_products.*' => 'image|mimes:jpeg,png,jpg,gif',
         ];
     }
 }
