@@ -37,7 +37,7 @@ class ProductController extends Controller
         }
        
 
-        return to_route('home')->with('success', 'confeitaria criada com sucesso');
+        return redirect()->route('home')->with('success', 'Produto criado com sucesso!');
     }
 
     public function edit(Product $product)
@@ -49,13 +49,22 @@ class ProductController extends Controller
     public function update(Product $product, ProductRequest $request)
     {
         $product->update($request->validated());
-        return to_route('home')->with('success', 'confeitaria editada com sucesso');
+        if ($request->hasFile('images_products')) {
+            foreach ($request->file('images_products') as $file) {
+                $path = $file->store('products', 'public');
+                ImageProduct::update([
+                    'products_id' => $product->id,
+                    'path' => $path,
+                ]);
+            }
+        }
+        return redirect()->route('home')->with('success', 'Produto editado com sucesso!');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return to_route('home')->with('success', 'confeitaria escluida com sucesso');
+        return redirect()->route('home')->with('success', 'Produto deletado com sucesso!');
     }
 
 }

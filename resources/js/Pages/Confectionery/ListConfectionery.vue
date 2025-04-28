@@ -1,8 +1,10 @@
 <script setup>
 import OptionsDropdown from "../Components/OptionsDropdown.vue";
+import NavBar from '../Components/NavBar.vue'
 import { Link, router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { ref } from "vue";
+
 
 defineProps({
   list: Array,
@@ -24,6 +26,7 @@ const toggleDropdown = (id) => {
       + Nova Confeitaria
     </Link> -->
 <template>
+  <NavBar/>
   <section class="bg-gray-50 p-3 sm:p-5">
     <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
       <!-- Start coding here -->
@@ -55,7 +58,7 @@ const toggleDropdown = (id) => {
                 <input
                   type="text"
                   id="simple-search"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-bombom-200 focus:border-bombom-200 block w-full pl-10 p-2"
                   placeholder="Search"
                   required=""
                 />
@@ -65,7 +68,7 @@ const toggleDropdown = (id) => {
               >
                 <button
                   type="submit"
-                  class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
+                  class="flex items-center justify-center text-white bg-bombom-300 hover:bg-bombom-400 focus:ring-4 focus:ring-bombom-100 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
                 >
                   Buscar
                 </button>

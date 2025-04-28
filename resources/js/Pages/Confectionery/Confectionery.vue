@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '../Components/NavBar.vue'
 import { Link, router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { onMounted } from "vue";
@@ -34,20 +35,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="bg-gray-50 py-8 antialiased md:py-12">
+  <NavBar/>
+  <section class=" py-8 antialiased md:py-12">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <div class="py-4 md:py-8">
         <div class="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
           <div class="space-y-4">
             <div class="flex space-x-4">
-              <img
-                class="h-16 w-16 rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                alt="Helene avatar"
-              />
               <div>
                 <span
-                  class="mb-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"
+                  class="mb-2 inline-block rounded bg-bombom-50 px-2.5 py-0.5 text-xs font-medium text-bombom-400"
                 >
                   Perfil da Confeitaria
                 </span>
@@ -134,7 +131,7 @@ onMounted(() => {
         >
           <Link
             :href="route('confectionery.edit', data.id)"
-            class="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+            class="inline-flex w-full items-center justify-center rounded-lg bg-bombom-300 px-5 py-2.5 text-sm font-medium text-white hover:bg-bombom-400 focus:outline-none focus:ring-4 focus:ring-bombom-00 sm:w-auto"
           >
             <svg
               class="-ms-0.5 me-1.5 h-4 w-4"
@@ -158,14 +155,14 @@ onMounted(() => {
 
           <Link
             :href="route('product.create', { confectionery: data.id })"
-            class="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+            class="inline-flex w-full items-center justify-center rounded-lg bg-bombom-300 px-5 py-2.5 text-sm font-medium text-white hover:bg-bombom-400 focus:outline-none focus:ring-4 focus:ring-bombom-100 sm:w-auto"
           >
             Add Produto
           </Link>
         </div>
       </div>
 
-      <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 md:p-8">
+      <div class="rounded-lg border border-gray-200  p-4 md:p-8">
         <div
           class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4"
         >
@@ -243,7 +240,7 @@ onMounted(() => {
 
                 <Link
                   :href="route('product.edit', product.id)"
-                  class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  class="inline-flex items-center rounded-lg bg-bombom-300 px-5 py-2.5 text-sm font-medium text-white hover:bg-bombom-400 focus:outline-none focus:ring-4 focus:ring-bombom-100"
                 >
                   Editar Produto
                 </Link>

@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\ConfectioneryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [HomeController::class, "home"])->name('home');
 
 Route::get('/confectionery/create', [ConfectioneryController::class,"create"])->name('confectionery.create');
 Route::post('/confectionery/store', [ConfectioneryController::class,"store"])->name('confectionery.store');
@@ -25,3 +24,4 @@ Route::get('/product/list', [ProductController::class,"list"])->name('product.li
 Route::get('/product/{product}', [ProductController::class,"edit"])->name('product.edit');
 Route::put('/product/{product}', [ProductController::class,"update"])->name('product.update');
 Route::delete('/product/{product}', [ProductController::class,"destroy"])->name('product.destroy');
+Route::get('/product/show/{product}', [ProductController::class,"show"])->name('product.show');

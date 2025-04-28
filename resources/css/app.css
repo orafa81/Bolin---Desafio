@@ -11,8 +11,15 @@
 }
 
 @theme {
-    --color-midnight: #9c3c86;
-    --color-tahiti: #d13775;
-    --color-bermuda: #d4d323;
+    --color-chocolate: #4e3a3b;
+    
   }
   
+@theme {
+    --color-bombom-50: oklch(0.97 0.0235 57.8);
+    --color-bombom-100: oklch(0.87 0.0335 66.8);
+    --color-bombom-200: oklch(0.77 0.0435 76.8);
+    --color-bombom-300: oklch(0.67 0.0535 86.8);
+    --color-bombom-400: oklch(0.57 0.0635 96.8);
+    --color-bombom-500: oklch(0.47 0.0735 106.8);
+  }

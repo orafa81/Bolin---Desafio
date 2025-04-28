@@ -38,11 +38,21 @@ const form = useForm({ ...props.product });
 const files = ref([]);
 const previewUrls = ref([]);
 const inputRef = ref(null);
+const existingImages = ref([]);
+
+if (
+  props.product.images_products &&
+  Array.isArray(props.product.images_products)
+) {
+  props.product.images_products.forEach((img) => {
+    existingImages.value.push(img);
+    previewUrls.value.push(img.url);
+  });
+}
 
 if (form.confectioneries_id == "") {
   form.confectioneries_id = confectionery;
 }
-
 
 const handleFiles = (e) => {
   const selectedFiles = Array.from(e.target.files);
@@ -58,17 +68,76 @@ const handleFiles = (e) => {
 };
 
 const removeImage = (index) => {
-  files.value.splice(index, 1);
+  const isExistingImage = existingImages.value[index];
+
+  if (isExistingImage) {
+    // Se for imagem existente, adiciona no deleted_images
+    if (!form.deleted_images) {
+      form.deleted_images = [];
+    }
+    form.deleted_images.push(existingImages.value[index].id); // id da imagem existente
+
+    existingImages.value.splice(index, 1);
+  } else {
+    // Se for imagem nova, remove de files
+    const fileIndex = index - existingImages.value.length;
+    files.value.splice(fileIndex, 1);
+    form.images_products = [...files.value];
+  }
+
   URL.revokeObjectURL(previewUrls.value[index]);
   previewUrls.value.splice(index, 1);
-  form.images_products = [...files.value];
 };
 
 const submit = () => {
-  if (props.method.toLowerCase() === "post") {
-    form.post(props.action);
-  } else if (props.method.toLowerCase() === "put") {
-    form.put(props.action);
+  const data = new FormData();
+
+  data.append("confectioneries_id", form.confectioneries_id);
+  data.append("name", form.name);
+  data.append("value", form.value);
+  data.append("description", form.description);
+
+  if (form.images_products && form.images_products.length > 0) {
+    for (let i = 0; i < form.images_products.length; i++) {
+      data.append("images_products[]", form.images_products[i]);
+    }
+  }
+  try {
+    if (props.method.toLowerCase() === "post") {
+      form.post(props.action, {
+        preserveScroll: true,
+        onSuccess: () => {
+          form.reset();
+          form.images_products = [];
+        },
+        onError: () => {
+          console.error("Erro ao salvar produto.");
+        },
+        onFinish: () => {
+          form.processing = false;
+        },
+        forceFormData: true,
+        data,
+      });
+    } else if (props.method.toLowerCase() === "put") {
+      form.put(props.action, {
+        preserveScroll: true,
+        onSuccess: () => {
+          form.reset();
+          form.images_products = [];
+        },
+        onError: () => {
+          console.error("Erro ao salvar produto.");
+        },
+        onFinish: () => {
+          form.processing = false;
+        },
+        forceFormData: true,
+        data,
+      });
+    }
+  } catch (error) {
+    console.error("Erro no envio do formulário:", error);
   }
 };
 </script>
@@ -84,7 +153,6 @@ const submit = () => {
         enctype="multipart/form-data"
         :disabled="form.processing"
       >
-      <h1>{{form.confectioneries_id}}</h1>
         <input
           type="number"
           id="confectioneries_id"
@@ -100,7 +168,7 @@ const submit = () => {
               class="block mb-2 text-sm font-medium text-gray-900"
               >Nome do Produto</label
             >
-  
+
             <input
               type="text"
               id="name"
@@ -141,7 +209,7 @@ const submit = () => {
               ref="inputRef"
               type="file"
               multiple
-              accept="images_products/*"
+              accept="images/*"
               @change="handleFiles"
               class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />

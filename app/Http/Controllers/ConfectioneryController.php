@@ -34,7 +34,7 @@ class ConfectioneryController extends Controller
     public function store(ConfectioneryRequest $request)
     {
         Confectionery::create($request->validated());
-        return to_route('home')->with('success', 'confeitaria criada com sucesso');
+        return redirect()->route('home')->with('success', 'Confeitaria criada com sucesso!');
     }
 
     public function edit(Confectionery $confectionery)
@@ -45,11 +45,11 @@ class ConfectioneryController extends Controller
     public function update(Confectionery $confectionery, ConfectioneryRequest $request)
     {
         $confectionery->update($request->validated());
-        return to_route('confectionery.create')->with('success', 'confeitaria editada com sucesso');
+        return redirect()->route('home')->with('success', 'Confeitaria editada com sucesso!');
     }
 
     public function destroy(Confectionery $confectionery){
         $confectionery->delete();
-        return to_route('confectionery.list')->with('success', 'confeitaria escluida com sucesso');
+        return redirect()->route('home')->with('success', 'Confeitaria deletada com sucesso!');
     }
 }
