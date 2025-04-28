@@ -180,12 +180,6 @@ onMounted(() => {
                   alt=""
                 />
               </a>
-              <button
-                @click="deletar(product.id)"
-                class="absolute top-1 right-1 bg-red-600 text-white rounded-full px-2 text-xs hover:bg-red-70"
-              >
-                X
-              </button>
             </div>
             <div class="pt-6">
               <a
@@ -237,13 +231,6 @@ onMounted(() => {
                 <p class="text-2xl font-extrabold leading-tight text-gray-900">
                   R${{ product.value }}
                 </p>
-
-                <Link
-                  :href="route('product.edit', product.id)"
-                  class="inline-flex items-center rounded-lg bg-bombom-300 px-5 py-2.5 text-sm font-medium text-white hover:bg-bombom-400 focus:outline-none focus:ring-4 focus:ring-bombom-100"
-                >
-                  Editar Produto
-                </Link>
               </div>
             </div>
           </div>

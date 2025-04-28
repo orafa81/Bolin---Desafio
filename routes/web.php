@@ -20,3 +20,4 @@ Route::get('/confectionery/show/{confectionery}', [ConfectioneryController::clas
 
 Route::get('/product/create', [ProductController::class,"create"])->name('product.create');
 Route::post('/product/store', [ProductController::class,"store"])->name('product.store');
+Route::get('/product/show/{product}', [ProductController::class,"show"])->name('product.show');
