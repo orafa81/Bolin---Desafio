@@ -1,41 +1,30 @@
-# Usa uma imagem oficial PHP com Apache
-FROM php:8.2-apache
+# (Tudo igual até aqui...)
 
-# Instala extensões necessárias
-RUN apt-get update && apt-get install -y \
-    libzip-dev zip unzip git curl libpng-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip mbstring exif pcntl bcmath gd
-
-# Habilitar o módulo Apache para Rewrite (Laravel precisa)
-RUN a2enmod rewrite
-
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Configura o diretório de trabalho
+# Define o diretório de trabalho como a raiz do projeto
 WORKDIR /var/www/html
 
-# Copia os arquivos da aplicação para dentro do container
+# Copia tudo
 COPY . .
 
-# Instala as dependências PHP
+# Instala dependências
 RUN composer install --optimize-autoloader --no-dev
 
-# Instala dependências do Frontend (npm e build)
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y nodejs
+# Instala Node e compila assets
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 RUN npm install && npm run build
 
-# Após instalar dependências
-RUN php artisan storage:link
-RUN php artisan migrate --force
+# Permissões
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Ajusta permissões (tudo importante)
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
+# 🚨 Muda o DocumentRoot do Apache para a pasta "public"
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-# Porta padrão
+# 🚀 Agora, o Workdir passa a ser a public
+WORKDIR /var/www/html/public
+
+# Expondo a porta
 EXPOSE 80
 
-# Comando de inicialização
+# Start do Apache
 CMD ["apache2-foreground"]
