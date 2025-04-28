@@ -74,10 +74,11 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-5.**Crie as tabelas no banco:**
+5.**Crie as tabelas no banco e as seeds:**
 
 ```
 php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
 6.**Inicie os servidores:**
