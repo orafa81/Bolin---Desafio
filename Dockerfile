@@ -30,8 +30,9 @@ RUN npm install && npm run build
 RUN php artisan storage:link
 RUN php artisan migrate --force
 
-# Permissões corretas para storage e cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Ajusta permissões (tudo importante)
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
 # Porta padrão
 EXPOSE 80
