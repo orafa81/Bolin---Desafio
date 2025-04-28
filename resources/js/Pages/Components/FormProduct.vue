@@ -119,23 +119,7 @@ const submit = () => {
         forceFormData: true,
         data,
       });
-    } else if (props.method.toLowerCase() === "put") {
-      form.put(props.action, {
-        preserveScroll: true,
-        onSuccess: () => {
-          form.reset();
-          form.images_products = [];
-        },
-        onError: () => {
-          console.error("Erro ao salvar produto.");
-        },
-        onFinish: () => {
-          form.processing = false;
-        },
-        forceFormData: true,
-        data,
-      });
-    }
+    } 
   } catch (error) {
     console.error("Erro no envio do formulário:", error);
   }

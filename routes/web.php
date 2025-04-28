@@ -20,8 +20,3 @@ Route::get('/confectionery/show/{confectionery}', [ConfectioneryController::clas
 
 Route::get('/product/create', [ProductController::class,"create"])->name('product.create');
 Route::post('/product/store', [ProductController::class,"store"])->name('product.store');
-Route::get('/product/list', [ProductController::class,"list"])->name('product.list');
-Route::get('/product/{product}', [ProductController::class,"edit"])->name('product.edit');
-Route::put('/product/{product}', [ProductController::class,"update"])->name('product.update');
-Route::delete('/product/{product}', [ProductController::class,"destroy"])->name('product.destroy');
-Route::get('/product/show/{product}', [ProductController::class,"show"])->name('product.show');
